@@ -15,6 +15,18 @@ class CommentsController < ApplicationController
     end
   end
 
+  def vote
+    if Vote.find_by user_id: current_user.id, voteable_type: "Comment", voteable_id: params[:id]
+      flash[:error] = "you've voted!"
+      redirect_to post_path(params[:post_id])
+    else
+      comment = Comment.find(params[:id])
+      Vote.create(voteable: comment, creator: current_user, vote: params[:vote])
+      flash[:notice] = "vote successfully!"
+      redirect_to post_path(params[:post_id])
+    end
+  end
+
   private
     def comment_params
       params.require(:comment).permit(:body)

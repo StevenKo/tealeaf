@@ -13,9 +13,16 @@ url:
   <% end %>
 
   <h5>Comments</h5>
-  <ol>
+  <ul>
     <% @post.comments.each do |comment| %>
-      <li><%= comment.body %></li>
+      <li>
+        <% if logged_in? %>
+          <%= link_to "+", vote_post_comment_path(@post,comment, vote: true), method: :post %>
+          <%= comment.total_votes %>
+          <%= link_to "-", vote_post_comment_path(@post,comment, vote: true), method: :post %>
+        <% end %>
+        <%= comment.body %>
+      </li>
     <% end %>
-  </ol>
+  </ul>
 </p>
