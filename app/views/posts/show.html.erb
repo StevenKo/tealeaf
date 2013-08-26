@@ -1,13 +1,15 @@
 <h4> Post title: <%= @post.title %> </h4>
 
 url:
-<%= @post.url %>
+<%= @post.url %> <br/>
+description:
+<%= @post.description %>
 
 <p>
   <% render 'shared/error', obj: @comment %>
   <%= form_for [@post,@comment] do |f| %>
     <%= render "shared/error", obj: @comment %>
-    <%= f.label :body %>
+    <%= f.label "Leave a comment here" %>
     <%= f.text_field :body %><br/>
     <%= f.submit "Create", class: 'btn btn-primary'%>
   <% end %>
