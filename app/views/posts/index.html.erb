@@ -8,7 +8,7 @@
       <li><%= link_to post.title, post_path(post) %> </li>
       <%= render 'post_vote', post: post if logged_in? %>
       <small>
-        [<%= link_to 'link', post.url %> ] posted at
+        [<%= link_to 'link', post.url %> ] posted at <%= display_datetime(post.created_at) %>
       </small>
 
     <% end %> 
