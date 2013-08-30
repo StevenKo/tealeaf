@@ -1,15 +1,15 @@
 class CategoriesController < ApplicationController
   
+  before_action :set_category, only: [:show, :edit]
+
   def index
     @categories = Category.all
   end
 
   def show
-    @category = Category.find(params[:id])
   end
 
   def edit
-    @category = Category.find(params[:id])
   end
 
   def new
@@ -40,5 +40,9 @@ class CategoriesController < ApplicationController
   private
     def category_params
       params.require(:category).permit(:name)
+    end
+
+    def set_category
+      @category = Category.find_by(slug: params[:id])
     end
 end
