@@ -10,7 +10,9 @@
       <small>
         [<%= link_to 'link', post.url %> ] posted at <%= display_datetime(post.created_at) %>
       </small>
-
+      <% if current_user.admin? %>
+        <%= link_to 'edit',edit_post_path(post) %>
+      <% end %>
     <% end %> 
   </ol>
   <%= link_to "Create New Post", new_post_path, class: "btn"%>

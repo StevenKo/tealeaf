@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update,:vote]
   before_action :require_user, only: [:new, :create, :edit, :update]
-  before_action :require_creator, only: [:edit, :update]
+  before_action :require_creator_or_admin, only: [:edit, :update]
   
   def index
     @posts = Post.all
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
       @post = Post.find_by(slug: params[:id])
     end
 
-    def require_creator
-      access_denied if @post.creator != current_user
+    def require_creator_or_admin
+      access_denied if (@post.creator != current_user && !current_user.admin?)
     end
 end
