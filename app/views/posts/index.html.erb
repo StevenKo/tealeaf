@@ -6,7 +6,7 @@
   <ol>
     <% @posts.each do |post| %>
       <li><%= link_to post.title, post_path(post) %> </li>
-      <%= render_vote(post) if logged_in? %>
+      <%= render 'post_vote', post: post if logged_in? %>
       <small>
         [<%= link_to 'link', post.url %> ] posted at
       </small>

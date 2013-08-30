@@ -19,9 +19,9 @@ description:
     <% @post.comments.each do |comment| %>
       <li>
         <% if logged_in? %>
-          <%= link_to "+", vote_post_comment_path(@post,comment, vote: true), method: :post %>
-          <%= comment.total_votes %>
-          <%= link_to "-", vote_post_comment_path(@post,comment, vote: false), method: :post %>
+          <%= link_to "+", vote_post_comment_path(@post,comment, vote: true), method: :post, remote: true%>
+          <span id='objs<%= comment.id %>_votes'><%= comment.total_votes %></span>
+          <%= link_to "-", vote_post_comment_path(@post,comment, vote: false), method: :post, remote: true %>
         <% end %>
         <%= comment.body %>
       </li>
