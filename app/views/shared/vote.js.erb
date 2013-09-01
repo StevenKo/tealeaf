@@ -1,1 +1,6 @@
-$("#objs<%= @obj.id %>_votes").text("<%= @obj.total_votes %>");
+<% if @vote.errors.any? %>
+  $("#messages").html('').slideUp();
+  $("#messages").html("<%=j (render 'shared/error', obj: @vote)%>").slideDown();
+<% else %>
+  $("#objs_<%= @obj.id %>_votes").text("<%= @obj.total_votes %>");
+<% end %>

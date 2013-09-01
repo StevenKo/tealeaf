@@ -1,3 +1,3 @@
 <%= link_to "+", vote_post_path(post, vote: true), method: :post, remote: true%>
-<span id='post_<%= post.id %>_votes'><%= post.total_votes %></span>
+<span id='objs_<%= post.id %>_votes'><%= post.total_votes %></span>
 <%= link_to "-", vote_post_path(post, vote: false), method: :post, remote: true %>

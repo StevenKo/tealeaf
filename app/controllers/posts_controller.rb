@@ -38,13 +38,8 @@ class PostsController < ApplicationController
   end
 
   def vote
-    if Vote.find_by user_id: current_user.id, voteable_type: "Post", voteable_id: params[:id]
-      flash[:error] = "you've voted!"      
-    else
-      Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
-      flash[:notice] = "vote successfully!"
-    end
-
+    @vote = Vote.new(voteable: @post, creator: current_user, vote: params[:vote])
+    @vote.save
     respond_to do |format|
       format.html do
         redirect_to posts_path
